@@ -89,52 +89,59 @@ namespace CrazyRedisUI
 
         }
 
-        private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             if (e.Node.Nodes.Count > 0)
             {
                 return;
             }
 
-            Task t = Task.Run(() => { }).ContinueWith(m =>
-              {
-                  var key = e.Node.Text;
-                  var db = RedisHelper.Redis.GetDatabase(0);
-                  var redisKey = new RedisKey(key);
-                  var keyType = db.KeyType(new RedisKey(key));
-                  lblType.Text = keyType.ToString();
-                  txtKey.Text = key;
-                  txtTTL.Text = db.KeyTimeToLive(redisKey)?.ToString();
+            var key = e.Node.Text;
+            var db = RedisHelper.Redis.GetDatabase(0);
+            var redisKey = new RedisKey(key);
+            var keyType = db.KeyType(new RedisKey(key));
+            lblType.Text = keyType.ToString();
+            txtKey.Text = key;
+            txtTTL.Text = db.KeyTimeToLive(redisKey)?.ToString();
 
-                  switch (keyType)
-                  {
-                      case RedisType.None:
-                          break;
-                      case RedisType.String:
-                          txtValue.Visible = true;
-                          dataGridView1.Visible = false;
-                          txtValue.Text = db.StringGet(redisKey).ToString().JsonFormat();
-                          break;
-                      case RedisType.List:
-                          break;
-                      case RedisType.Set:
-                          break;
-                      case RedisType.SortedSet:
-                          break;
-                      case RedisType.Hash:
-                          RenderHash(db, redisKey);
-                          break;
-                      case RedisType.Stream:
-                          break;
-                      case RedisType.Unknown:
-                          break;
-                      default:
-                          break;
-                  }
-              }, TaskScheduler.FromCurrentSynchronizationContext());
+            switch (keyType)
+            {
+                case RedisType.None:
+                    break;
+                case RedisType.String:
+                    RenderString(db, redisKey);
+                    break;
+                case RedisType.List:
+                    break;
+                case RedisType.Set:
+                    break;
+                case RedisType.SortedSet:
+                    break;
+                case RedisType.Hash:
+                    RenderHash(db, redisKey);
+                    break;
+                case RedisType.Stream:
+                    break;
+                case RedisType.Unknown:
+                    break;
+                default:
+                    break;
+            }
 
         }
-
+        private void RenderString(IDatabase db, RedisKey redisKey)
+        {
+            txtValue.Visible = true;
+            dataGridView1.Visible = false;
+            try
+            {
+                txtValue.Text = db.StringGet(redisKey).ToString().JsonFormat();
+            }
+            catch 
+            {
+                txtValue.Text = db.StringGet(redisKey).ToString();
+            }
+        }
         private void RenderHash(IDatabase db, RedisKey redisKey)
         {
             txtValue.Visible = false;
@@ -142,8 +149,8 @@ namespace CrazyRedisUI
             dataGridView1.Rows.Clear();
             dataGridView1.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-
-            foreach (var item in db.HashGetAll(redisKey))
+           
+            foreach (var item in db.HashGetAll(redisKey).OrderBy(p => p.Name.ToString()))
             {
                 dataGridView1.Rows.Add(item.Name.ToString(), item.Value.ToString());
             }
@@ -169,8 +176,12 @@ namespace CrazyRedisUI
             var result = RedisHelper.Redis.GetDatabase(0).KeyDelete(new RedisKey(key));
             if (result)
             {
+                var nextNode = treeView1.SelectedNode.NextNode;
                 treeView1.SelectedNode.Remove();
+                treeView1.SelectedNode = nextNode;
+             
                 RedisHelper.Keys.TryTake(out key);
+
             }
             else
             {
@@ -178,5 +189,7 @@ namespace CrazyRedisUI
             }
 
         }
+
+
     }
 }

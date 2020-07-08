@@ -30,8 +30,7 @@ namespace CrazyRedisUI
             });
 
 
-
-            //System.Windows.Forms.MessageBox.Show("可以连接到的:\r\n" + string.Join("\r\n", servers.Select(p => p.EndPoint.ToString())));
+            //System.Windows.Forms.MessageBox.Show("可以连接到的:\r\n" + string.Join("\r\n", Servers.Select(p => p.EndPoint.ToString())));
 
         }
 
