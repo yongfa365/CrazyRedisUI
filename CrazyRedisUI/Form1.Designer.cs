@@ -46,6 +46,7 @@
             this.txtKey = new System.Windows.Forms.TextBox();
             this.lblType = new System.Windows.Forms.Label();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -121,6 +122,7 @@
             // 
             // splitContainer2.Panel1
             // 
+            this.splitContainer2.Panel1.Controls.Add(this.linkLabel1);
             this.splitContainer2.Panel1.Controls.Add(this.dataGridView1);
             this.splitContainer2.Panel1.Controls.Add(this.comboBox1);
             this.splitContainer2.Panel1.Controls.Add(this.txtValue);
@@ -206,6 +208,7 @@
             // 
             // txtTTL
             // 
+            this.txtTTL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTTL.Location = new System.Drawing.Point(475, 8);
             this.txtTTL.Name = "txtTTL";
             this.txtTTL.Size = new System.Drawing.Size(128, 21);
@@ -244,6 +247,7 @@
             // 
             // lblTTL
             // 
+            this.lblTTL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTTL.AutoSize = true;
             this.lblTTL.Location = new System.Drawing.Point(440, 14);
             this.lblTTL.Name = "lblTTL";
@@ -253,6 +257,8 @@
             // 
             // txtKey
             // 
+            this.txtKey.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtKey.Location = new System.Drawing.Point(62, 8);
             this.txtKey.Name = "txtKey";
             this.txtKey.Size = new System.Drawing.Size(353, 21);
@@ -263,9 +269,9 @@
             this.lblType.AutoSize = true;
             this.lblType.Location = new System.Drawing.Point(13, 13);
             this.lblType.Name = "lblType";
-            this.lblType.Size = new System.Drawing.Size(41, 12);
+            this.lblType.Size = new System.Drawing.Size(47, 12);
             this.lblType.TabIndex = 0;
-            this.lblType.Text = "label1";
+            this.lblType.Text = "KeyType";
             // 
             // richTextBox2
             // 
@@ -275,6 +281,17 @@
             this.richTextBox2.Size = new System.Drawing.Size(851, 129);
             this.richTextBox2.TabIndex = 0;
             this.richTextBox2.Text = "";
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(352, 42);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(251, 12);
+            this.linkLabel1.TabIndex = 6;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "https://github.com/yongfa365/CrazyRedisUI";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // Form1
             // 
@@ -321,6 +338,7 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Fileld;
         private System.Windows.Forms.DataGridViewTextBoxColumn Value;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }
 
