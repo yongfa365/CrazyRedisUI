@@ -92,7 +92,7 @@ namespace CrazyRedisUI
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            if (e.Node.Nodes.Count > 0)
+            if (e.Node.Tag == null)
             {
                 return;
             }
@@ -138,7 +138,7 @@ namespace CrazyRedisUI
             {
                 txtValue.Text = db.StringGet(redisKey).ToString().JsonFormat();
             }
-            catch 
+            catch
             {
                 txtValue.Text = db.StringGet(redisKey).ToString();
             }
@@ -150,7 +150,7 @@ namespace CrazyRedisUI
             dataGridView1.Rows.Clear();
             dataGridView1.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-           
+
             foreach (var item in db.HashGetAll(redisKey).OrderBy(p => p.Name.ToString()))
             {
                 dataGridView1.Rows.Add(item.Name.ToString(), item.Value.ToString());
@@ -180,7 +180,7 @@ namespace CrazyRedisUI
                 var nextNode = treeView1.SelectedNode.NextNode;
                 treeView1.SelectedNode.Remove();
                 treeView1.SelectedNode = nextNode;
-             
+
                 RedisHelper.Keys.TryTake(out key);
 
             }

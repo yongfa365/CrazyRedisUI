@@ -56,15 +56,24 @@ namespace CrazyRedisUI
 
             treeView1.Nodes.Clear();
 
-            AddToTreeVeiw(treeView1.Nodes, root);
+            AddToTreeVeiw(treeView1.Nodes, root.Children);
             Expend(treeView1.Nodes);
         }
-        public static void AddToTreeVeiw(TreeNodeCollection root, TreeBuilder tb)
+        public static void AddToTreeVeiw(TreeNodeCollection nowNodes, Dictionary<string,TreeBuilder> newNodes)
         {
-            foreach (string key in tb.Children.Keys)
+            foreach (var item in newNodes)
             {
-                TreeNode t = root.Add(tb.Children[key].FullText ?? tb.Children[key].Text);
-                AddToTreeVeiw(t.Nodes, tb.Children[key]);
+                if (item.Value.FullText != null)
+                {
+                    var node = nowNodes.Add(item.Value.FullText);
+                    node.Tag = "ISEND";
+                    AddToTreeVeiw(node.Nodes, item.Value.Children);
+                }
+                else
+                {
+                    var node = nowNodes.Add(item.Value.Text);
+                    AddToTreeVeiw(node.Nodes, item.Value.Children);
+                }
             }
         }
 
