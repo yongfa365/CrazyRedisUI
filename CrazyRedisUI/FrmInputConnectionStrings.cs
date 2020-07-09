@@ -17,13 +17,19 @@ namespace CrazyRedisUI
             InitializeComponent();
             foreach (var filename in Directory.GetFiles(ConnPath))
             {
-                var name = filename.Substring(filename.LastIndexOf("\\")+1).Split('.')[0];
+                var name = filename.Substring(filename.LastIndexOf("\\") + 1).Split('.')[0];
                 comboBox1.Items.Add(name);
             };
 
-            if (comboBox1.Items.Count>0)
+            if (comboBox1.Items.Count > 0)
             {
                 comboBox1.SelectedIndex = 0;
+            }
+            else
+            {
+                textBox1.Text = @"
+127.0.0.1:6379
+127.0.0.1:6380";
             }
 
         }

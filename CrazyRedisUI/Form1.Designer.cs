@@ -96,7 +96,7 @@
             this.txtFilter.Name = "txtFilter";
             this.txtFilter.Size = new System.Drawing.Size(393, 21);
             this.txtFilter.TabIndex = 1;
-            this.txtFilter.Text = "urn:frbs:";
+            this.txtFilter.Text = "urn:";
             this.txtFilter.TextChanged += new System.EventHandler(this.txtFilter_TextChanged);
             // 
             // treeView1
