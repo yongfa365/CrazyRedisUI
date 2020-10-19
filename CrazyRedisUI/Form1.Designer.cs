@@ -33,6 +33,7 @@
             this.txtFilter = new System.Windows.Forms.TextBox();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Fileld = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,7 +47,8 @@
             this.txtKey = new System.Windows.Forms.TextBox();
             this.lblType = new System.Windows.Forms.Label();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.btnExpand = new System.Windows.Forms.Button();
+            this.btnCopyKeys = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -67,6 +69,8 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.btnCopyKeys);
+            this.splitContainer1.Panel1.Controls.Add(this.btnExpand);
             this.splitContainer1.Panel1.Controls.Add(this.btnConnect);
             this.splitContainer1.Panel1.Controls.Add(this.txtFilter);
             this.splitContainer1.Panel1.Controls.Add(this.treeView1);
@@ -143,6 +147,17 @@
             this.splitContainer2.SplitterDistance = 637;
             this.splitContainer2.SplitterWidth = 8;
             this.splitContainer2.TabIndex = 0;
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(352, 42);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(251, 12);
+            this.linkLabel1.TabIndex = 6;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "https://github.com/yongfa365/CrazyRedisUI";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // dataGridView1
             // 
@@ -282,16 +297,27 @@
             this.richTextBox2.TabIndex = 0;
             this.richTextBox2.Text = "";
             // 
-            // linkLabel1
+            // btnExpand
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(352, 42);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(251, 12);
-            this.linkLabel1.TabIndex = 6;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "https://github.com/yongfa365/CrazyRedisUI";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            this.btnExpand.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExpand.Location = new System.Drawing.Point(307, 42);
+            this.btnExpand.Name = "btnExpand";
+            this.btnExpand.Size = new System.Drawing.Size(54, 20);
+            this.btnExpand.TabIndex = 3;
+            this.btnExpand.Text = "Expend";
+            this.btnExpand.UseVisualStyleBackColor = true;
+            this.btnExpand.Click += new System.EventHandler(this.btnExpand_Click);
+            // 
+            // btnCopyKeys
+            // 
+            this.btnCopyKeys.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCopyKeys.Location = new System.Drawing.Point(368, 42);
+            this.btnCopyKeys.Name = "btnCopyKeys";
+            this.btnCopyKeys.Size = new System.Drawing.Size(38, 20);
+            this.btnCopyKeys.TabIndex = 3;
+            this.btnCopyKeys.Text = "Copy";
+            this.btnCopyKeys.UseVisualStyleBackColor = true;
+            this.btnCopyKeys.Click += new System.EventHandler(this.btnCopyKeys_Click);
             // 
             // Form1
             // 
@@ -339,6 +365,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Fileld;
         private System.Windows.Forms.DataGridViewTextBoxColumn Value;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.Button btnCopyKeys;
+        private System.Windows.Forms.Button btnExpand;
     }
 }
 

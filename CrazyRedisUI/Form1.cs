@@ -195,5 +195,15 @@ namespace CrazyRedisUI
         {
             Process.Start(linkLabel1.Text);
         }
+
+        private void btnExpand_Click(object sender, EventArgs e)
+        {
+            treeView1.SelectedNode.ExpandAll();
+        }
+
+        private void btnCopyKeys_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(string.Join("\r\n", RedisHelper.Keys.OrderBy(p => p)));
+        }
     }
 }
